@@ -8,6 +8,11 @@ env = Env()
 env.read_env()
 SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG")
+
+DB_NAME = env.str("DB_NAME")
+DB_USERNAME = env.str("DB_USERNAME")
+DB_PASSWORD = env.str("DB_PASSWORD")
+
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
 # CORS_ALLOW_ALL_ORIGINS = True
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
@@ -79,12 +84,18 @@ TEMPLATES = [
     },
 ]
 WSGI_APPLICATION = "config.wsgi.application"
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql', 
+        'NAME': DB_NAME,
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 

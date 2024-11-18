@@ -3,3 +3,6 @@ migrations
 
 myenv
 db.sqlite3
+
+.env
+venv
